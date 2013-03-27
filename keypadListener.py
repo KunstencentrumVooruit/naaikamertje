@@ -6,6 +6,7 @@ import time
 import urllib2
 import json
 import sys
+import os
 from urllib2 import Request, urlopen, URLError, HTTPError
 
 def getMessage(code):
@@ -18,7 +19,9 @@ def getMessage(code):
 		data1 = response.read()
 		pag=json.loads(data1)
 		print pag["story"]["description"]
-		# print ticket		
+		# print ticket
+		os.system("echo %s > naaikamer.txt" % (pag["story"]["description"]))
+		os.system("start /min notepad /P naaikamer.txt")
 		ser.write("0") # print 0 of 2 in geval van afdrukfout 
 		time.sleep(1)
 	except HTTPError as e:
@@ -30,7 +33,7 @@ def getMessage(code):
 		ser.write("2") # netwerkfout..
  	return
 
-ser = serial.Serial('/dev/ttyACM0', 9600)
+ser = serial.Serial('COM4', 9600)
 #sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser))
 
 while 1:

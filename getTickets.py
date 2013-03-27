@@ -1,4 +1,4 @@
-#!/usr/bin/python
+ #!/usr/bin/python
 
 import serial
 import io
@@ -6,6 +6,7 @@ import time
 import urllib2
 import json
 import sys
+import os
 from urllib2 import Request, urlopen, URLError, HTTPError
 
 def getMessage():
@@ -27,6 +28,9 @@ def getMessage():
 		print len(pag["stories"])
 		for w in pag["stories"]:
 			print pag["stories"][i]["description"]
+			os.system("echo %s > naaikamer.txt" % (pag["stories"][i]["description"]))
+			os.system("start /min notepad /P naaikamer.txt")
+			time.sleep(1)
 			i=i+1
 				
 	except HTTPError as e:
