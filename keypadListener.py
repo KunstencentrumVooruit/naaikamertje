@@ -32,8 +32,11 @@ def getMessage(code):
 		print 'Reason: ', e.reason
 		ser.write("2") # netwerkfout..
  	return
-
-ser = serial.Serial('COM4', 9600)
+print sys.argv[1:]
+if sys.argv[1:]==['win']:
+	ser = serial.Serial('COM4', 9600)
+else:
+	ser = serial.Serial('/dev/ttyASM0', 9600)
 #sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser))
 
 while 1:
