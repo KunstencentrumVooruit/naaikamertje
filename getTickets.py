@@ -26,7 +26,7 @@ def getMessage():
 		#	i=i+1
 		print len(pag["stories"])
 		for w in pag["stories"]:
-			print pag["stories"][w]["description"]
+			print pag["stories"][i]["description"]
 			i=i+1
 				
 	except HTTPError as e:
