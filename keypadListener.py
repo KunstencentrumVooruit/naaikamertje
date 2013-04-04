@@ -7,31 +7,39 @@ import urllib2
 import json
 import sys
 import os
+import getTickets
 from urllib2 import Request, urlopen, URLError, HTTPError
 
 def getMessage(code):
 
 	req = urllib2.Request("http://192.168.2.31/stories/print_story_with_code/%s/" % (code))
 	#req = urllib2.Request('http://192.168.2.31')
-	
-	try:	
-		response = urllib2.urlopen(req)
-		data1 = response.read()
-		pag=json.loads(data1)
-		print pag["story"]["description"]
-		# print ticket
-		os.system("echo %s > naaikamer.txt" % (pag["story"]["description"]))
-		os.system("start /min notepad /P naaikamer.txt")
+
+	if code=='123456':
+		print "Tickets worden opgevraagd"
+		getTickets.getMessages2BPrinted()
 		ser.write("0") # print 0 of 2 in geval van afdrukfout 
 		time.sleep(1)
-	except HTTPError as e:
-		print e.code   		
-		ser.write("1") # foute code
-		time.sleep(1)
-	except URLError as e:
-		print 'Reason: ', e.reason
-		ser.write("2") # netwerkfout..
- 	return
+		
+	else:		
+		try:	
+			response = urllib2.urlopen(req)
+			data1 = response.read()
+			pag=json.loads(data1)
+			print pag["story"]["description"]
+			# print ticket
+			os.system("echo %s > naaikamer.txt" % (pag["story"]["description"]))
+			os.system("start /min notepad /P naaikamer.txt")
+			ser.write("0") # print 0 of 2 in geval van afdrukfout 
+			time.sleep(1)
+		except HTTPError as e:
+			print e.code   		
+			ser.write("1") # foute code
+			time.sleep(1)
+		except URLError as e:
+			print 'Reason: ', e.reason
+			ser.write("2") # netwerkfout..
+		return
 print sys.argv[1:]
 if sys.argv[1:]==['win']:
 	ser = serial.Serial('COM4', 9600)

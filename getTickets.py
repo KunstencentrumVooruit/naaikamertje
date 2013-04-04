@@ -7,9 +7,10 @@ import urllib2
 import json
 import sys
 import os
+
 from urllib2 import Request, urlopen, URLError, HTTPError
 
-def getMessage():
+def getMessages2BPrinted():
 
 	
 	#req = urllib2.Request("https://vooruit.yesplan.be/api/events/date%3A20-03-2013%20event%3Aookdagklapper%3A%22Ook%20op%20dagklapper%22?api_key=30BC1A5EF43F9D36A2CA61544CC98A24")
@@ -40,8 +41,8 @@ def getMessage():
 	except URLError as e:
 		print 'Reason: ', e.reason
 		
- 	return
+	return
 
-getMessage() # get verhaal
+#getMessage() # get verhaal
 
 	
