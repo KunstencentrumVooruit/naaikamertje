@@ -13,7 +13,7 @@ from urllib2 import Request, urlopen, URLError, HTTPError
 def getMessages2BPrinted():
 
 	
-	#req = urllib2.Request("https://vooruit.yesplan.be/api/events/date%3A20-03-2013%20event%3Aookdagklapper%3A%22Ook%20op%20dagklapper%22?api_key=30BC1A5EF43F9D36A2CA61544CC98A24")
+	
 	req = urllib2.Request("http://192.168.2.31/stories/print_to_be_printed_stories/")
 	#req = urllib2.Request('http://192.168.2.31')
 	
